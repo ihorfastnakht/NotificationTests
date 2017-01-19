@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToastNotification"
+             x:Class="ToastNotification.MainPage">
+  <StackLayout>
+  <ListView ItemsSource="{Binding ListItems}" SelectedItem="{Binding TestSelected, Mode=TwoWay}" HorizontalOptions="StartAndExpand" 
+            VerticalOptions="EndAndExpand"
+            HasUnevenRows="True"
+            RowHeight="100"
+            x:Name="list">
+    <ListView.Triggers>
+      <EventTrigger Event="ItemSelected">
+        <!--<local:VisualElementPopTriggerAction/>-->
+      </EventTrigger>
+    </ListView.Triggers>
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell x:Name="view">
+        <StackLayout IsVisible="True">
+          <StackLayout.Triggers>
+            <DataTrigger TargetType="StackLayout" Binding="{Binding IsSelected}" Value="True">
+              <Setter Property="IsVisible" Value="True"/>
+            </DataTrigger>
+            <DataTrigger TargetType="StackLayout" Binding="{Binding IsSelected}" Value="False">
+              <Setter Property="IsVisible" Value="False"/>
+            </DataTrigger>
+            <!--<DataTrigger TargetType="Button" Binding="{Binding Source={x:Reference list}, Path=SelectedItem.IsSelected}" Value="False">
+                <Setter Property="IsVisible" Value="False"/>
+              </DataTrigger>-->
+          </StackLayout.Triggers>
+          <Label Text="{Binding Title}"/>
+          <Button Text="click" Command="{Binding TestCommand}" IsVisible="True"
+                  BindingContext="{Binding Source={x:Reference list}, Path=BindingContext}"
+                  CommandParameter="{Binding Source={x:Reference view},
+                  Path=BindingContext}">
+          </Button>
+        </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+    <Button Clicked="OnClick2" Text="Notify by arc"></Button>
+    <Button Clicked="OnClick" Text="Notify"></Button>
+  </StackLayout>
+</ContentPage>
