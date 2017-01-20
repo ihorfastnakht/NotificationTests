@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace ToastNotification.Windows
         public App()
         {
             this.InitializeComponent();
+            //UserDialogs.Init();
             this.Suspending += this.OnSuspending;
         }
 

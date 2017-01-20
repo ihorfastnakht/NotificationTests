@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace ToastNotification
 {
     public partial class MainPage : ContentPage
     {
+
         public MainPage()
         {
             InitializeComponent();
@@ -29,10 +31,11 @@ namespace ToastNotification
 
         private async void OnClick(object sender, EventArgs e)
         {
-            var notificator = DependencyService.Get<IToastNotificator>();
+            //var notificator = DependencyService.Get<IToastNotificator>();
 
-            bool tapped = await notificator.Notify(ToastNotificationType.Info,
-                "Test", "Notificator", TimeSpan.FromSeconds(1));
+            //bool tapped = await notificator.Notify(ToastNotificationType.Info,
+            //    "Test", "Notificator", TimeSpan.FromSeconds(1));     
+            UserDialogs.Instance.Toast("toast", TimeSpan.FromSeconds(10));//Progress(new ProgressDialogConfig() { Title = "OK", MaskType = MaskType.Gradient, IsDeterministic = true });
         }
     }
 }

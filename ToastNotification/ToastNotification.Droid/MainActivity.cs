@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
 using Plugin.Toasts;
+using Acr.UserDialogs;
 
 namespace ToastNotification.Droid
 {
@@ -23,6 +24,8 @@ namespace ToastNotification.Droid
 
             
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            UserDialogs.Init(this);
 
             DependencyService.Register<ToastNotificatorImplementation>();
             ToastNotificatorImplementation.Init(this);
